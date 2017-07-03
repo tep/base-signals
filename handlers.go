@@ -6,6 +6,7 @@ import (
 	"os/signal"
 	"strconv"
 	"sync"
+	"syscall"
 	"time"
 
 	"toolman.org/base/runtimeutil"
@@ -15,7 +16,7 @@ import (
 
 var (
 	utx      sync.Mutex
-	on			 bool
+	on       bool
 	handlers map[os.Signal][]*handler
 	nch      chan os.Signal
 	done     chan struct{}
@@ -94,6 +95,38 @@ func register(h *handler, sl []os.Signal) {
 	}
 }
 
+func registerOne(f func(), s os.Signal) {
+	RegisterHandler(func(os.Signal) bool { f(); return true }, s)
+}
+
+func OnSIGHUP(f func()) {
+	registerOne(f, syscall.SIGHUP)
+}
+
+func OnSIGINT(f func()) {
+	registerOne(f, syscall.SIGINT)
+}
+
+func OnSIGTERM(f func()) {
+	registerOne(f, syscall.SIGTERM)
+}
+
+func OnSIGCHLD(f func()) {
+	registerOne(f, syscall.SIGCHLD)
+}
+
+func OnSIGUSR1(f func()) {
+	registerOne(f, syscall.SIGUSR1)
+}
+
+func OnSIGUSR2(f func()) {
+	registerOne(f, syscall.SIGUSR2)
+}
+
+func OnSIGWINCH(f func()) {
+	registerOne(f, syscall.SIGWINCH)
+}
+
 func handleSignals() {
 	log.V(1).Info("Handling signals")
 	for {
@@ -110,7 +143,7 @@ func handleSignals() {
 				log.Infof("%s: handling signal %d", id, s)
 			}
 
-			func(s os.Signal){
+			func(s os.Signal) {
 				log.V(2).Infof("%s: in handler subfunc", id)
 				utx.Lock()
 				defer utx.Unlock()
