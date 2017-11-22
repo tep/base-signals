@@ -9,9 +9,8 @@ import (
 	"syscall"
 	"time"
 
+	"toolman.org/base/log"
 	"toolman.org/base/runtimeutil"
-
-	log "github.com/golang/glog"
 )
 
 var (
