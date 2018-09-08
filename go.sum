@@ -1,0 +1,4 @@
+toolman.org/base/log v0.0.0-20171122035328-733244c76f23 h1:cGd7PXTES1Pmc70sDluqtgUOmYeFqsmOT3rt8oELbfc=
+toolman.org/base/log v0.0.0-20171122035328-733244c76f23/go.mod h1:hrV1wsklEfvJMfqxURrC8IDyWpYWcMgPk1evbVgXjvI=
+toolman.org/base/runtimeutil v1.0.0 h1:SEHNA5v0Jt11GTRQbyNFr0aVdWoBHprEm4231nx88HI=
+toolman.org/base/runtimeutil v1.0.0/go.mod h1:Qr/NewvIMNdG/IGvPC6BSRh6boJuyVQR4ZcofO1bGEk=
