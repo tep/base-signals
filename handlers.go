@@ -67,7 +67,7 @@ func register(h *handler, sl []os.Signal) {
 	utx.Lock()
 	defer utx.Unlock()
 
-	log.V(1).Infof("registering handler: %v: signals: %v", h.info, sl)
+	log.V(2).Infof("registering handler: %v: signals: %v", h.info, sl)
 
 	if !on {
 		handlers = make(map[os.Signal][]*handler)
