@@ -9,7 +9,7 @@ import (
 	"syscall"
 	"time"
 
-	"toolman.org/base/log"
+	"toolman.org/base/log/v2"
 	"toolman.org/base/runtimeutil"
 )
 
